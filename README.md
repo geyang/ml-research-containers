@@ -26,6 +26,10 @@ WARNING: passwd file doesn't exist in container, not updating
 WARNING: group file doesn't exist in container, not updating
 ```
 
+## Considerations for Building Singulairity Images
+
+- https://stackoverflow.com/questions/61143522/file-ownership-and-permissions-in-singularity-containers
+
 ## Model-free Deep Reinforcement Learning
 
 This image includes mujoco-py, gym, and DeepMind control. The Singularity image is built on Canon.
