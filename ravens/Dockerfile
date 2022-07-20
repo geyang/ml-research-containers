@@ -1,7 +1,6 @@
 # Based on https://github.com/geyang/jaynes-starter-kit/blob/master/docker/pytorch/Dockerfile
 FROM nvidia/cudagl:11.4.0-devel-ubuntu20.04
 
-FROM python:3.8
 ENV PIP_NO_CACHE_DIR=1
 RUN apt update
 RUN yes | apt install \
