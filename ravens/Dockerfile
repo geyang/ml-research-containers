@@ -1,7 +1,5 @@
-# Based on https://github.com/geyang/jaynes-starter-kit/blob/master/docker/pytorch/Dockerfile
 FROM nvidia/cudagl:11.4.0-devel-ubuntu20.04
-
-ENV PIP_NO_CACHE_DIR=1
+FROM python:3.8
 
 RUN apt-get update
 RUN yes | apt-get install \
@@ -27,7 +25,9 @@ RUN yes | apt-get install \
     libcgal-dev
 
 RUN yes | apt-get install libcgal-qt5-dev
+
 RUN pip install --upgrade pip
+ENV PIP_NO_CACHE_DIR=1
 RUN pip install pytest pytest-forked lz4 pyyaml
 RUN pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
 RUN pip install datasets einops sklearn torchinfo tqdm

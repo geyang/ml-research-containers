@@ -6,7 +6,7 @@ build:
 clean-build:
 	docker build -t ravens . --no-cache=true
 run:
-	docker run model-free
+	docker run ravens
 release:
-	docker tag model-free $(HUB_USER)/ravens
+	docker tag ravens $(HUB_USER)/ravens
 	docker push $(HUB_USER)/ravens
