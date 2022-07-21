@@ -2,8 +2,9 @@
 FROM nvidia/cudagl:11.4.0-devel-ubuntu20.04
 
 ENV PIP_NO_CACHE_DIR=1
-RUN apt update
-RUN yes | apt install \
+
+RUN apt-get update
+RUN yes | apt-get install \
     tree \
     zsh  \
     git \
@@ -25,7 +26,7 @@ RUN yes | apt install \
     libqt5opengl5-dev \
     libcgal-dev
 
-RUN yes | apt install libcgal-qt5-dev
+RUN yes | apt-get install libcgal-qt5-dev
 RUN pip install --upgrade pip
 RUN pip install pytest pytest-forked lz4 pyyaml
 RUN pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
