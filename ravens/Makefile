@@ -2,7 +2,7 @@ HUB_USER=episodeyang
 
 default: build release
 build:
-	docker build -t ravens .
+	docker build --progress plain -t ravens .
 clean-build:
 	docker build -t ravens . --no-cache=true
 run:
