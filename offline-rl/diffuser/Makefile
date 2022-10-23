@@ -2,9 +2,11 @@ DOCKER_BUILDKIT=1
 
 default: build release
 build:
-	sudo docker build --progress=plain -t torch-cifar .
+	sudo docker build --progress=plain -t diffuser .
 run:
-	docker run torch-cifar
+	docker run diffuser
+test:
+	docker run -i --rm -w /test-script/ diffuser bash -c "python test.py"
 release:
-	docker tag torch-cifar episodeyang/diffusion-models
-	docker push episodeyang/torch-cifar
+	docker tag diffuser episodeyang/diffuser
+	docker push episodeyang/diffuser

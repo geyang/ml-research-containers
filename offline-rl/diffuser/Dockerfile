@@ -1,5 +1,11 @@
-FROM nvidia/cuda:11.1.1-runtime-ubuntu18.04
+FROM nvidia/cuda:11.1.1-cudnn8-runtime-ubuntu20.04
 ENV LANG=C.UTF-8
+
+# https://dev.to/0xbf/set-timezone-in-your-docker-image-d22
+RUN apt-get update && \
+    apt-get install -yq tzdata && \
+    ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata
 
 RUN apt-get -y update && apt-get install -y git vim tree curl wget unzip xvfb patchelf ffmpeg cmake swig
 RUN apt-get install -y libssl-dev libcurl4-openssl-dev  # Needed for pyCurl
@@ -24,8 +30,8 @@ ENV MJKEY_PATH ${MUJOCO_PY_MJKEY_PATH}
 
 RUN apt-get install -y libssl-dev libcurl4-openssl-dev
 RUN apt-get update && apt-get install -y python3.8-dev python3-pip
-RUN ln -s /usr/bin/pip3 /usr/bin/pip
-RUN ln -s /usr/bin/python3.8 /usr/bin/python
+RUN ln -sf /usr/bin/pip3 /usr/bin/pip
+RUN ln -sf /usr/bin/python3.8 /usr/bin/python
 RUN python -m pip install --upgrade pip
 
 ENV PIP_NO_CACHE_DIR=off
@@ -36,23 +42,33 @@ RUN pip install google-cloud-storage
 RUN pip install torch==1.9.1+cu111 torchvision==0.10.1+cu111 torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
 RUN pip install matplotlib==3.3.4 scikit-image==0.17.2 scikit-video==1.1.11 gitpython einops pillow tqdm pandas wandb
 RUN pip install ray==1.9.1 crcmod
-RUN pip install jax==0.2.21 flax==0.3.5
+RUN pip install "jax[cuda11_cudnn805]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+#RUN pip install jax==0.2.21 flax==0.3.5
+RUN pip install flax
 RUN pip install typed-argument-parser
 
 #RUN apt-get install software-properties-common
 RUN apt-get install -y libgl1-mesa-glx libosmesa6
-RUN apt-get install -y libglew-dev
+#RUN apt-get install -y libglew-dev
+RUN apt-get install -y libglew2.1 libglew-dev
 
 ENV MUJOCO_GL egl
 #ENV LD_PRELOAD /usr/lib/x86_64-linux-gnu/libGLEW.so
 #:/usr/lib/x86_64-linux-gnu/libGL.so.1
 
 RUN pip install mujoco-py==2.0.2.13
-RUN pip install git+https://github.com/deepmind/dm_control@41d0c7383153f9ca6c12f8e865ef5e73a98759bd#egg=dm_control
-RUN pip install git+https://github.com/JannerM/d4rl.git@13fc08c198d17ac627f528aedc70843e8f86bb71 --no-deps
-
 RUN pip install h5py git+https://github.com/aravindr93/mjrl@master#egg=mjrl pybullet termcolor click
+# Installed latest dm_control version which supports mujoco200
+RUN pip install pip install dm_control==0.0.364896371
+#RUN pip install git+https://github.com/deepmind/dm_control@41d0c7383153f9ca6c12f8e865ef5e73a98759bd#egg=dm_control
+RUN pip install git+https://github.com/JannerM/d4rl.git@13fc08c198d17ac627f528aedc70843e8f86bb71 --no-deps
 
 RUN pip install gym==0.18.0
 
 RUN pip install jaynes ml_logger waterbear params-proto functional-notations --no-cache-dir
+
+WORKDIR "/work"
+
+RUN mkdir "/test-script"
+
+COPY test.py /test-script/test.py
