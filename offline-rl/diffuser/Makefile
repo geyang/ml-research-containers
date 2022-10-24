@@ -1,3 +1,9 @@
+.PHONY: build
+# shell option to use extended glob from from https://stackoverflow.com/a/6922447/1560241
+SHELL:=/bin/bash -O extglob
+
+VERSION=`< VERSION`
+
 DOCKER_BUILDKIT=1
 
 default: build release
@@ -13,7 +19,6 @@ test:
             --net=host \
             --workdir="/test_scripts" \
             diffuser python /test_scripts/test.py
-            # diffuser /bin/bash -c "python /test_scripts/test.py"
 release:
-	docker tag diffuser episodeyang/diffuser
-	docker push episodeyang/diffuser
+	docker tag diffuser episodeyang/diffuser:v$(VERSION)
+	docker push episodeyang/diffuser:v$(VERSION)
