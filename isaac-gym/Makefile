@@ -7,4 +7,4 @@ release:
 	docker tag gait-conditioned episodeyang/gait-conditioned
 	docker push episodeyang/gait-conditioned
 test:
-    echo "add docker cmd including mount"
+	echo "add docker cmd including mount"
