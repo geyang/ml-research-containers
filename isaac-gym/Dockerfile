@@ -37,7 +37,7 @@ ENV PIP_NO_CACHE_DIR=1
 # 1.13.1+cu117'
 RUN pip install torch torchvision torchaudio --no-cache
 
-ENV LD_LIBRARY_PATH="/root/anaconda3/lib:/usr/local/cuda/lib64:/usr/local/cuda/compat:${LD_LIBRARY_PATH}"
+ENV LD_LIBRARY_PATH="/root/anaconda3/lib:${LD_LIBRARY_PATH}"
 
 COPY ./third_party/IsaacGym_Preview_4_Package.tar.gz /home/$USERNAME/
 RUN cd /home/$USERNAME && tar -xvzf IsaacGym_Preview_4_Package.tar.gz
