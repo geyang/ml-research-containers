@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # dependencies for gym
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
+ libboost-all-dev \
  libxcursor-dev \
  libxrandr-dev \
  libxinerama-dev \
