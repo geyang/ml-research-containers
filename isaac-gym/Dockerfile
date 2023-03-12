@@ -49,11 +49,13 @@ RUN cd /opt && tar -xvzf IsaacGym_Preview_4_Package.tar.gz
 RUN rm /opt/IsaacGym_Preview_4_Package.tar.gz
 RUN cd /opt/isaacgym/python && pip install -e .
 
-ENV NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=all
+ENV PATH="${PATH}:/opt/hpcx/ompi/bin"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/hpcx/ompi/lib"
 
 ## install packages that are easier to install via conda
 RUN conda install pycurl pandas
 
+# conda install is a lot more reliable.
 RUN apt-get install -y libopencv-dev python3-opencv
 RUN pip install opencv-python==4.5.5.64
 
@@ -81,5 +83,4 @@ print('finished build')
 "
 EOF
 
-ENV PATH="${PATH}:/opt/hpcx/ompi/bin"
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/hpcx/ompi/lib"
+ENV NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=all
