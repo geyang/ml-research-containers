@@ -70,6 +70,8 @@ RUN pip install jaynes ml_logger waterbear params-proto functional-notations cmx
 
 # issacgym has not updated to numpy 1.24 yet. np.float is deprecated for numpy>=1.24
 RUN pip install "numpy<1.24"
+# Fix the plugin issue
+RUN pip install -U imageio imageio-ffmpeg
 
 ## run once to build ninja
 RUN <<EOF
