@@ -1,6 +1,7 @@
 default: build release
-build: 
-	docker build --progress=plain -t gait-conditioned . 
+build:
+	echo "requires the docker buildkit"
+	DOCKER_BUILDKIT=1 docker build --progress=plain -t gait-conditioned .
 clean-build: 
 	docker build -t gait-conditioned . --no-cache=true
 release:
