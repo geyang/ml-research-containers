@@ -55,7 +55,7 @@ ENV NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=all
 RUN conda install pycurl pandas
 
 RUN apt-get install -y libopencv-dev python3-opencv
-RUN pip install opencv-python
+RUN pip install opencv-python==4.5.5.64
 
 RUN pip install gym==0.19.0
 RUN pip install gym3
@@ -80,3 +80,6 @@ import torch
 print('finished build')
 "
 EOF
+
+ENV PATH="${PATH}:/opt/hpcx/ompi/bin"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/hpcx/ompi/lib"
