@@ -52,6 +52,8 @@ ENV NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=all
 
 ## install packages that are easier to install via conda
 RUN conda install pycurl pandas
+
+RUN apt-get install -y libopencv-dev python3-opencv
 RUN pip install opencv-python
 
 RUN pip install gym==0.19.0
@@ -62,6 +64,9 @@ RUN pip install kornia
 RUN pip install filelock
 
 RUN pip install jaynes ml_logger waterbear params-proto functional-notations cmx
+
+# issacgym has not updated to numpy 1.24 yet. np.float is deprecated for numpy>=1.24
+RUN pip install "numpy<1.24"
 
 ## run once to build ninja
 RUN <<EOF
