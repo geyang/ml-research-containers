@@ -65,5 +65,5 @@ RUN pip install git+https://github.com/JannerM/d4rl.git@13fc08c198d17ac627f528ae
 
 RUN pip install gym==0.18.0
 
-RUN pip install jaynes ml_logger==0.8.96 waterbear params-proto functional-notations --no-cache-dir
+RUN pip install jaynes ml_logger waterbear params-proto functional-notations --no-cache-dir
 RUN pip install gym-dmc --no-deps

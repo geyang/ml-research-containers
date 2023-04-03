@@ -20,5 +20,7 @@ test:
             --workdir="/test_scripts" \
             diffuser python /test_scripts/test.py
 release:
-	docker tag diffuser episodeyang/diffuser:v$(VERSION)
-	docker push episodeyang/diffuser:v$(VERSION)
+	docker tag diffuser episodeyang/diffuser:"`date "+%F"`"
+	docker tag diffuser episodeyang/diffuser:latest
+	docker push episodeyang/diffuser:"`date "+%F"`"
+	docker push episodeyang/diffuser:latest
