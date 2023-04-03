@@ -40,7 +40,7 @@ RUN pip install pytest pytest-forked lz4 pyyaml qt5-py
 RUN pip install google-cloud-storage
 
 RUN pip install torch==1.9.1+cu111 torchvision==0.10.1+cu111 torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
-RUN pip install matplotlib==3.3.4 scikit-image==0.17.2 scikit-video==1.1.11 gitpython einops pillow tqdm pandas wandb
+RUN pip install matplotlib==3.3.4 scikit-learn scikit-image scikit-video gitpython einops pillow tqdm pandas wandb
 RUN pip install ray==1.9.1 crcmod
 RUN pip install "jax[cuda11_cudnn805]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 #RUN pip install jax==0.2.21 flax==0.3.5
@@ -67,3 +67,4 @@ RUN pip install gym==0.18.0
 
 RUN pip install jaynes ml_logger waterbear params-proto functional-notations --no-cache-dir
 RUN pip install gym-dmc --no-deps
+RUN pip install torchinfo
