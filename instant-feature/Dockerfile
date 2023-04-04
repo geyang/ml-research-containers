@@ -26,6 +26,40 @@ RUN apt -y install libcgal-qt5-dev
 
 RUN apt -y install libatlas-base-dev libsuitesparse-dev
 RUN apt -y install colmap
+❯ cd /tmp/pycharm_project_415
+❯ vim Dockerfile
+❯ cd instant-feature
+❯ vim Dockerfile
+❯ vim Dockerfile
+❯ cat Dockerfile
+# A Dockerfile that sets up a full Gym install with test dependencies
+FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt update
+RUN apt install -y \
+    git \
+    cmake \
+    build-essential \
+    libboost-program-options-dev \
+    libboost-filesystem-dev \
+    libboost-graph-dev \
+    libboost-system-dev \
+    libboost-test-dev \
+    libeigen3-dev \
+    libsuitesparse-dev \
+    libfreeimage-dev \
+    libmetis-dev \
+    libgoogle-glog-dev \
+    libgflags-dev \
+    libglew-dev \
+    qtbase5-dev \
+    libqt5opengl5-dev \
+    libcgal-dev
+RUN apt -y install libcgal-qt5-dev
+
+RUN apt -y install libatlas-base-dev libsuitesparse-dev
+RUN apt -y install colmap
 
 RUN apt-get -y install software-properties-common
 RUN add-apt-repository ppa:deadsnakes/ppa
@@ -40,15 +74,11 @@ RUN pip install pytest pytest-forked lz4 pyyaml
 
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
 
-ARG CUDA_ARCHITECTURES=90;89;86;80;75;70;61;52;37
-
-RUN git clone --recursive https://github.com/nvlabs/tiny-cuda-nn
-RUN cd tiny-cuda-nn && \
-    export TCNN_CUDA_ARCHITECTURES=${CUDA_ARCHITECTURES} && \
-    cmake . -B build && \
-    cmake --build build --config RelWithDebInfo -j && \
-    cd bindings/torch && \
-    python setup.py install
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
+ENV TCNN_CUDA_ARCHITECTURES="90;89;86;80;75;70;61"
+ENV CUDA_HOME="/usr/local/cuda"
+# RUN pip install "git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch"
+RUN python -m pip install git+https://github.com/NVlabs/tiny-cuda-nn.git@v1.6#subdirectory=bindings/torch
 
 RUN pip install aiohttp==3.8.1 aiortc==1.3.2 appdirs>=1.4 av==9.2.0 cmx cryptography==38.0.4 einops ftfy functorch==0.2.1
 RUN pip install gdown==4.6.0 h5py>=2.9.0 imageio==2.21.1 ipywidgets>=7.6 ninja==1.10.2.3
