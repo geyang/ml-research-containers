@@ -11,3 +11,5 @@ print('finished downloading MNIST')
 dataset = datasets.CIFAR10(root="/tmp/datasets", train=True, download=True)
 print('finished downloading CIFAR10')
 EOF
+
+RUN pip install -U ml-logger params-proto cmx
