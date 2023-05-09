@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.3-labs
-FROM episodeyang/pytorch
+FROM episodeyang/diffuser:2023-05-09
 ENV DATASETS=/tmp/datasets
 
 RUN python <<EOF
@@ -12,4 +12,4 @@ dataset = datasets.CIFAR10(root="/tmp/datasets", train=True, download=True)
 print('finished downloading CIFAR10')
 EOF
 
-RUN pip install -U ml-logger params-proto cmx
+RUN pip install ml-logger==0.10.14 params-proto cmx

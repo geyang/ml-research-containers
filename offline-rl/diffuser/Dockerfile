@@ -67,5 +67,5 @@ RUN pip install gym==0.18.0
 
 RUN pip install torchinfo datasets
 
-RUN pip install jaynes ml_logger waterbear params-proto functional-notations
 RUN pip install gym-dmc --no-deps
+RUN pip install jaynes ml_logger==0.10.14 waterbear params-proto functional-notations
