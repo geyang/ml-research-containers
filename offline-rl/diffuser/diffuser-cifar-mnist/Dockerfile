@@ -12,4 +12,4 @@ dataset = datasets.CIFAR10(root="/tmp/datasets", train=True, download=True)
 print('finished downloading CIFAR10')
 EOF
 
-RUN pip install ml-logger==0.10.14 params-proto cmx
+RUN pip install ml-logger==0.10.15 params-proto cmx
