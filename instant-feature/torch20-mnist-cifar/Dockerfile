@@ -11,4 +11,4 @@ dataset = datasets.CIFAR10(root="/tmp/datasets", train=True, download=True)
 print('finished downloading CIFAR10')
 EOF
 
-RUN pip install jaynes ml_logger waterbear params-proto functional_notations cloudpickle==1.3.0
+RUN pip install -U jaynes ml_logger==0.10.15 waterbear params-proto functional_notations cloudpickle==1.3.0
