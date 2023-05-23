@@ -44,8 +44,6 @@ RUN pip install torch==1.13.1 torchvision functorch --extra-index-url https://do
 ENV TCNN_CUDA_ARCHITECTURES="90;89;86;80;75;70;61"
 RUN pip install ninja git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch
 
-RUN pip install open-clip-torch==2.20.0
-
 RUN pip install aiohttp==3.8.1 aiortc==1.3.2 appdirs>=1.4 av==9.2.0 cmx cryptography==38.0.4 einops ftfy functorch==0.2.1
 RUN pip install gdown==4.6.0 h5py>=2.9.0 imageio==2.21.1 ipywidgets>=7.6 ninja==1.10.2.3
 RUN pip install msgpack==1.0.4 msgpack_numpy==0.4.8 nerfacc==0.2.1 open3d>=0.16.0 protobuf==3.20.0
@@ -61,3 +59,5 @@ RUN pip install yacs lietorch torch_scatter
 RUN pip install numpy scipy scikit-learn
 RUN apt install -y ffmpeg
 RUN pip install timm
+
+RUN pip install open-clip-torch==2.20.0
