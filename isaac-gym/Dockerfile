@@ -86,3 +86,6 @@ print('finished build')
 EOF
 
 ENV NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=all
+
+# todo: add isaacgymenvs
+# @ekviamn @alany1
