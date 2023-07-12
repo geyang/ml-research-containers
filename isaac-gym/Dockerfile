@@ -42,7 +42,7 @@ RUN apt-get update \
 RUN pip install -U pip
 ENV PIP_NO_CACHE_DIR=1
 
-COPY ./third_party/IsaacGym_Preview_4_Package.tar.gz /opt/
+COPY ./IsaacGym_Preview_4_Package.tar.gz /opt/
 
 ENV PATH="/root/.local/bin:$PATH"
 RUN cd /opt && tar -xvzf IsaacGym_Preview_4_Package.tar.gz
@@ -87,5 +87,7 @@ EOF
 
 ENV NVIDIA_VISIBLE_DEVICES=all NVIDIA_DRIVER_CAPABILITIES=all
 
-# todo: add isaacgymenvs
-# @ekviamn @alany1
+RUN git clone https://github.com/NVIDIA-Omniverse/IsaacGymEnvs.git
+RUN cd IsaacGymEnvs && pip install -e .
+
+RUN pip install loguru
