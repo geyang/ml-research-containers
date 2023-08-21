@@ -53,7 +53,8 @@ ENV PATH="${PATH}:/opt/hpcx/ompi/bin"
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/hpcx/ompi/lib"
 
 ## install packages that are easier to install via conda
-RUN conda install pycurl pandas
+RUN apt install -y libcurl4-openssl-dev libssl-dev
+RUN pip install pycurl pandas
 
 # conda install is a lot more reliable.
 RUN apt-get install -y libopencv-dev python3-opencv
