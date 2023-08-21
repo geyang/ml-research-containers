@@ -43,9 +43,11 @@ RUN pip install termcolor==2.2.0
 # A Dockerfile that sets up a full Gym install with test dependencies
 FROM episodeyang/instant-feature-t20
 
-RUN python <<EOF
-print('run this')
-EOF
+RUN mkdir $HOME/pretrained_models
+RUN cd $HOME/pretrained_models
+RUN GIT_LFS_SKIP_SMUDGE=1 git clone https://huggingface.co/runwayml/stable-diffusion-v1-5
+RUN git clone https://huggingface.co/lllyasviel/control_v11p_sd15_lineart
+RUN git clone https://huggingface.co/lllyasviel/control_v11p_sd15_canny.git
 
 RUN pip install pycurl
 #RUN pip install imageio==2.25.1 # ml-logger requires 2.27.0

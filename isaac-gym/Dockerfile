@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.3-labs
-FROM nvcr.io/nvidia/pytorch:21.09-py3
+FROM nvcr.io/nvidia/pytorch:23.03-py3
 ENV DEBIAN_FRONTEND=noninteractive
 
 # dependencies for gym
@@ -31,8 +31,8 @@ RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 8
 # Can't remove package libegl-mesa0 directly (because of libegl1 which we need)
 RUN rm /usr/lib/x86_64-linux-gnu/libEGL_mesa.so.0 /usr/lib/x86_64-linux-gnu/libEGL_mesa.so.0.0.0 /usr/share/glvnd/egl_vendor.d/50_mesa.json
 
-COPY nvidia_icd.json /usr/share/vulkan/icd.d/nvidia_icd.json
-COPY 10_nvidia.json /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+COPY third_party/nvidia_icd.json /usr/share/vulkan/icd.d/nvidia_icd.json
+COPY third_party/10_nvidia.json /usr/share/glvnd/egl_vendor.d/10_nvidia.json
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
@@ -42,7 +42,7 @@ RUN apt-get update \
 RUN pip install -U pip
 ENV PIP_NO_CACHE_DIR=1
 
-COPY ./IsaacGym_Preview_4_Package.tar.gz /opt/
+COPY third_party/IsaacGym_Preview_4_Package.tar.gz /opt/
 
 ENV PATH="/root/.local/bin:$PATH"
 RUN cd /opt && tar -xvzf IsaacGym_Preview_4_Package.tar.gz

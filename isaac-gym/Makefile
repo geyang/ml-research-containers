@@ -3,7 +3,7 @@ build:
 	echo "requires the docker buildkit"
 	DOCKER_BUILDKIT=1 docker build --progress=plain -t isaacgym .
 clean-build:
-	docker build -t isaacgym . --no-cache=true
+	DOCKER_BUILDKIT=1 docker build -t isaacgym . --no-cache=true
 release:
 	docker tag isaacgym episodeyang/isaacgym:"`date "+%F"`"
 	docker tag isaacgym episodeyang/isaacgym:latest
