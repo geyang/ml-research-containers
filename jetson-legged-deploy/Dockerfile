@@ -74,7 +74,7 @@ RUN cd /root/lcm/lcm-python && pip install -e .
 RUN apt-get install -y libcurl4-openssl-dev libssl-dev
 RUN apt autoremove -y
 RUN pip install pycurl pandas
-RUN pip install ml-logger jaynes params-proto functional_notations cloudpickle==1.3.0
+RUN pip install ml-logger cmx jaynes params-proto functional_notations cloudpickle==1.3.0
 
 RUN apt clean
 RUN rm -rf /var/lib/apt/lists/*
