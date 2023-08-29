@@ -1,6 +1,7 @@
 # syntax=docker/dockerfile:experimental
 #FROM nvcr.io/nvidia/l4t-pytorch:r32.6.1-pth1.9-py3
-FROM nvcr.io/nvidia/l4t-pytorch:r35.1.0-pth1.13-py3
+#FROM nvcr.io/nvidia/l4t-pytorch:r35.1.0-pth1.13-py3
+FROM nvcr.io/nvidia/l4t-pytorch:r35.2.1-pth2.0-py3
 
 # Comment these out, since they will break pip install.
 # ENV http_proxy="http://192.168.123.161:3128"
