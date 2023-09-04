@@ -67,7 +67,7 @@ RUN pip install scikit-build
 RUN pip install kornia
 RUN pip install filelock
 
-RUN pip install jaynes ml_logger waterbear params-proto functional-notations cmx
+RUN pip install jaynes ml_logger waterbear params-proto==2.11.16 functional-notations cmx
 
 # issacgym has not updated to numpy 1.24 yet. np.float is deprecated for numpy>=1.24
 RUN pip install "numpy<1.24"
