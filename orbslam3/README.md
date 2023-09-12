@@ -77,7 +77,7 @@ You may want better control of what's inside the image. To this matter you will 
 # Image installation
 
 ```bash
-docker pull episodeyang/orbslam3:<desired tag>
+docker pull episodeyang/orbslam3:<desired tag, a date>
 ```
 
 # Image usage
