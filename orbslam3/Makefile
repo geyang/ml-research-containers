@@ -8,7 +8,7 @@ default: run
 build:
 	docker build --progress plain -t orbslam3 .
 enter:
-	clear && docker exec -it ${CONT_NAME} bash
+	docker exec -it ${CONT_NAME} bash
 down:
 	docker-compose down
 run:

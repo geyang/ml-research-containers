@@ -84,12 +84,20 @@ docker pull episodeyang/orbslam3:<desired tag>
 
 All the commands need to be run in **orbslam3** directory.
 
-Run *orbslam3* container
-```bash
-make
-```
+- Enter *orbslam3* container and start a bash session
 
-Build *orbslam3* image (uses **Dockerfile**)
-```bash
-make build
-```
+    ```bash
+    make enter
+    ```
+
+- Run *orbslam3* container
+
+    ```bash
+    make
+    ```
+
+- Build *orbslam3* image (uses **Dockerfile**)
+
+    ```bash
+    make build
+    ```
