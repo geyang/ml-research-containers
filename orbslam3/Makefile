@@ -4,7 +4,7 @@ IM_NAME=episodeyang/orbslam3
 CONT_NAME=orbslam3 
 
 
-default: build release
+default: run
 build:
 	docker build --progress plain -t orbslam3 .
 enter:

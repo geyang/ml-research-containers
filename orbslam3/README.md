@@ -17,14 +17,14 @@ Solved common issues (the real bois will know) :
 - Container that keeps restarting
 - *docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]]*
 
-This repository contains release info and advanced image manipulation. See the project's **[Dockerhub](https://hub.docker.com/repository/docker/lmwafer/orb-slam-3-ready)** for more quick usage info.
+This repository contains release info and advanced image manipulation. See the project's **[Dockerhub](https://hub.docker.com/repository/docker/episodeyang/orbslam3)** for more quick usage info.
 
 # I want vSLAM now
 1. Make sure to have the basic docker dependencies mentioned [here](#image-prerequisites). 
   
-2. This will pull the image from [Docker hub](https://hub.docker.com/r/lmwafer/orb-slam-3-ready/tags) and run a container (needs a GPU for Pangolin, container removed after exit)
+2. This will pull the image from [Docker hub](https://hub.docker.com/r/episodeyang/orbslam3/tags) and run a container (needs a GPU for Pangolin, container removed after exit)
 ```bash
-sudo xhost +local:root && docker run --privileged --name orb-3-container --rm -p 8087:8087 -e DISPLAY=$DISPLAY -e QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev:/dev:ro --gpus all -it lmwafer/orb-slam-3-ready:1.0-ubuntu18.04
+sudo xhost +local:root && docker run --privileged --name orb-3-container --rm -p 8087:8087 -e DISPLAY=$DISPLAY -e QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev:/dev:ro --gpus all -it episodeyang/orbslam3:1.0-ubuntu18.04
 ```
 
 3. Run this inside the container to start a real time demo (with Intel D435i plugged in)
@@ -34,7 +34,7 @@ sudo xhost +local:root && docker run --privileged --name orb-3-container --rm -p
 You can run every example presented above with Realsense cameras. Everything in the image is already built!
 
 # General info
-The image is based on three image layers : [Ubuntu 18.04](https://hub.docker.com/_/ubuntu?tab=tags&page=1&name=18.04), [realsense-ready](https://hub.docker.com/r/lmwafer/realsense-ready) and [orb-slam-3-ready](https://hub.docker.com/r/lmwafer/orb-slam-3-ready). 
+The image is based on three image layers : [Ubuntu 18.04](https://hub.docker.com/_/ubuntu?tab=tags&page=1&name=18.04), [realsense-ready](https://hub.docker.com/r/episodeyang/realsense-ready) and [orbslam3](https://hub.docker.com/r/episodeyang/orbslam3). 
 
 The *realsense-ready* layer only adds the [Intel Realsense SDK 2.0](https://github.com/IntelRealSense/librealsense). For now, this layer is mandatory but more camera flexibility will be added in the future. You can still try to change the `FROM` image, see below. 
 
@@ -48,7 +48,7 @@ cd /dpds/ORB_SLAM3/
 
 You may want better control of what's inside the image. To this matter you will find here : 
 
-- Image *Dockerfile*. Note that **orb-slam-3-ready** lays on top of **realsense-ready**. Modify that by changing `FORM` instruction in *Dockerfile-orb*. Don't forget general usage dependencies that came along realsense-ready image !
+- Image *Dockerfile*. Note that **orbslam3** lays on top of **realsense-ready**. Modify that by changing `FORM` instruction in *Dockerfile-orb*. Don't forget general usage dependencies that came along realsense-ready image !
 
 - *docker-compose.yml* to start container automatically and for Kubernetes-like deployement. Note that stopping a container removes it. An external *app* directory is linked to the containers */app* one in order to provide a permanent save point.
 
@@ -77,34 +77,19 @@ You may want better control of what's inside the image. To this matter you will 
 # Image installation
 
 ```bash
-docker pull lmwafer/orb-slam-3-ready:<desired tag>
+docker pull episodeyang/orbslam3:<desired tag>
 ```
 
 # Image usage
 
-All the commands need to be run in **orb-slam-3-ready** directory. 
+All the commands need to be run in **orbslam3** directory.
 
-Get inside a freshly new container (basically `up` + `enter`)
+Run *orbslam3* container
 ```bash
 make
 ```
 
-Start an *orb-slam-3-container* (uses **docker-compose.yml**)
-```bash
-make up
-```
-
-Enter running *orb-slam-3-container*
-```bash
-make enter
-```
-
-Stop running *orb-slam-3-container* (and removes it, by default only data in */app* is saved here in *app* directory)
-```bash
-make down
-```
-
-Build *orb-slam-3-ready* image (uses **Dockerfile**)
+Build *orbslam3* image (uses **Dockerfile**)
 ```bash
 make build
 ```
