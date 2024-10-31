@@ -22,12 +22,16 @@ Content of the Makefile:
 
 ```makefile
 #! Makefile
+default: build release
 build:
-	docker build -t geometric_vision .
+	docker build --progress plain -t pytorch20-mnist-cifar .
 run:
-	docker run geometric_vision
+	docker run instant-feature-t20
 release:
-	docker tag geometric_vision improbableailab/geometric_vision
-	docker push improbableailab/geometric_vision
+	docker tag instant-feature-t20 episodeyang/pytorch20-mnist-cifar:"`date "+%F"`"
+	docker tag instant-feature-t20 episodeyang/pytorch20-mnist-cifar:latest
+	docker push episodeyang/pytorch20-mnist-cifar:"`date "+%F"`"
+	docker push episodeyang/pytorch20-mnist-cifar:latest
+
 ```
 

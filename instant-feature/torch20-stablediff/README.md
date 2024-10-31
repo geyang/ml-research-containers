@@ -24,14 +24,13 @@ Content of the Makefile:
 #! Makefile
 default: build release
 build:
-	docker build --progress plain -t instant-feature-t20 .
+	docker build --progress plain -t pytorch20-stablediffusion .
 run:
-	docker run instant-feature-t20
+	docker run pytorch20-stablediffusion
 release:
-	docker tag instant-feature-t20 episodeyang/instant-feature-t20:"`date "+%F"`"
-	docker tag instant-feature-t20 episodeyang/instant-feature-t20:latest
-	docker push episodeyang/instant-feature-t20:"`date "+%F"`"
-	docker push episodeyang/instant-feature-t20:latest
-
+	docker tag pytorch20-stablediffusion episodeyang/pytorch20-stablediffusion:"`date "+%F"`"
+	docker tag pytorch20-stablediffusion episodeyang/pytorch20-stablediffusion:latest
+	docker push episodeyang/pytorch20-stablediffusion:"`date "+%F"`"
+	docker push episodeyang/pytorch20-stablediffusion:latest
 ```
 

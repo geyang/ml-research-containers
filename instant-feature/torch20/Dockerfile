@@ -46,7 +46,7 @@ RUN pip install ninja git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=b
 
 RUN pip install aiohttp==3.8.1 aiortc==1.3.2 appdirs>=1.4 av==9.2.0 cmx cryptography==38.0.4 einops ftfy functorch==0.2.1
 RUN pip install gdown==4.6.0 h5py>=2.9.0 imageio==2.21.1 ipywidgets>=7.6 ninja==1.10.2.3
-RUN pip install msgpack==1.0.4 msgpack_numpy==0.4.8 nerfacc==0.2.1 open3d>=0.16.0 protobuf==3.20.0
+RUN pip install msgpack==1.0.4 msgpack_numpy==0.4.8 nerfacc==0.5.2 open3d>=0.16.0 protobuf==3.20.0
 RUN pip install python-socketio==5.7.1 regex requests rich==12.5.1 scikit-image==0.19.3 torchmetrics[image]>=0.9.3
 RUN pip install torchtyping>=0.1.4 tyro>=0.3.31 u-msgpack-python>=2.4.1 nuscenes-devkit>=1.1.1 xatlas
 

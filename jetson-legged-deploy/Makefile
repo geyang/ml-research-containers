@@ -4,8 +4,10 @@ build:
 clean-build: 
 	docker build -t jetson-legged-deployment . --no-cache=true
 release:
-	docker tag jetson-legged-deployment episodeyang/jetson-legged-deployment
-	docker push episodeyang/jetson-legged-deployment
+	docker tag jetson-legged-deployment episodeyang/jetson-legged-deployment:"`date "+%F"`"
+	docker tag jetson-legged-deployment episodeyang/jetson-legged-deployment:latest
+	docker push episodeyang/jetson-legged-deployment:"`date "+%F"`"
+	docker push episodeyang/jetson-legged-deployment:latest
 run:
 	docker run -it \
             --env="DISPLAY" \
