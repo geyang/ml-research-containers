@@ -57,7 +57,8 @@ RUN pip install jaynes ml_logger waterbear params-proto functional_notations clo
 # needed for dpvo
 RUN pip install yacs lietorch torch_scatter
 RUN pip install numpy scipy scikit-learn
-RUN apt install -y ffmpeg
+RUN apt update && apt install -y ffmpeg
 RUN pip install timm
 RUN pip install torch==2.0.0+cu118 torchvision==0.15.1+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
-RUN pip install open-clip-torch
+
+RUN pip install open-clip-torch==2.20.0

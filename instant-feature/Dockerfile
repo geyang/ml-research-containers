@@ -59,3 +59,5 @@ RUN pip install yacs lietorch torch_scatter
 RUN pip install numpy scipy scikit-learn
 RUN apt install -y ffmpeg
 RUN pip install timm
+
+RUN pip install open-clip-torch==2.20.0
